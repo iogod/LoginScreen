@@ -1,7 +1,11 @@
 .App {
   text-align: center;
 }
+body {
 
+  width: 100%;
+  margin: 0 auto;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,6 +17,22 @@
   }
 }
 
+.Lander {
+
+  background-image: url('/src/media/workoutgif.gif');
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  background-size: cover;
+  
+ 
+}
+.Sign{
+
+  margin-top: 2%;
+}
+
+ 
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
