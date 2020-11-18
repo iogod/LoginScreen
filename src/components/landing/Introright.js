@@ -6,6 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import PopUp from "./Popup"
+import PopUpBirthday from "./PopupBirthday"
 
 const Introright = () => {
   const [alignment, setAlignment] = React.useState("left");
@@ -39,7 +41,7 @@ const Introright = () => {
           aria-label="text alignment"
           
         >
-          <ToggleButton variant="contained" value="left" aria-label="left aligned">
+          <ToggleButton variant="contained" value="left" aria-label="left aligned" >
             SignUp
           </ToggleButton>
           <ToggleButton variant="contained" value="center" aria-label="centered">
@@ -85,9 +87,13 @@ const Introright = () => {
       </Grid>
 
       <Grid  style= {spacing} item xs={12}>
-        <Button color="primary">
+        {/* <Button color="primary" onClick= {(e)=> console.log("Chea")} >
           {alignment === "left" ? "Sign Up" : "Sign In"}
-        </Button>
+         
+          
+        </Button> */}
+         {/* <PopUp/> */}
+         <PopUpBirthday userState= {alignment === "left" ? " Sign Up" : " Sign In"}/>
       </Grid>
 
 <Grid item  className= "Sign" xs={12}>
