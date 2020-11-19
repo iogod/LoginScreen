@@ -20,20 +20,16 @@ const useStyles = makeStyles((theme) => ({
 
 export class BirthdayPicker extends Component {
 
-    //  handleChange = (event) => {
-    //     setAge(event.target.value);
-    //   };
+
     constructor(props) {
         super(props)
     }
  
-    
-    
     render() {
 
         return (
             <div>
-         <FormControl variant="filled" style={{minWidth:120}}  >
+         <FormControl variant="filled" style={{minWidth:"130px"}}  >
         <InputLabel id="demo-simple-select-filled-label">{this.props.title}</InputLabel>
         <Select
         native
@@ -44,7 +40,6 @@ export class BirthdayPicker extends Component {
           onChange = {(e)=> this.props.changeSelected(e)}
         >
        <option aria-label="None" value="" />
-         
          {this.props.choices}
          {()=> {console.log(this.props.choices)}}
     

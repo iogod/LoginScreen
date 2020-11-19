@@ -6,7 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import FacebookIcon from "@material-ui/icons/Facebook";
-import PopUpBirthday from "./PopupBirthday";
+
+import PopBirthVerify from "./PopBirthVerify"
 
 const Introright = () => {
   const [alignment, setAlignment] = React.useState("left");
@@ -91,9 +92,8 @@ const Introright = () => {
       </Grid>
 
       <Grid style={spacing} item xs={12}>
-        <PopUpBirthday
-          userState={alignment === "left" ? " Sign Up" : " Sign In"}
-        />
+   
+        <PopBirthVerify userState={alignment === "left" ? " Sign Up" : " Sign In"}></PopBirthVerify>
       </Grid>
 
       <Grid item className="Sign" xs={12}>
