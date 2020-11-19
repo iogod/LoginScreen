@@ -6,19 +6,17 @@ import TextField from "@material-ui/core/TextField";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import FacebookIcon from "@material-ui/icons/Facebook";
-import PopUp from "./Popup"
-import PopUpBirthday from "./PopupBirthday"
+import PopUpBirthday from "./PopupBirthday";
 
 const Introright = () => {
   const [alignment, setAlignment] = React.useState("left");
-    const spacing = {marginTop:"1%"}
+  const spacing = { marginTop: "1%" };
   const handleAlignment = (event, newAlignment) => {
-
-   setAlignment(newAlignment)
+    setAlignment(newAlignment);
   };
   return (
-    <Grid  container justify="center" xs={12} md={6}>
-      <Grid style= {spacing} item xs={12} >
+    <Grid container justify="center" xs={12} md={6}>
+      <Grid style={spacing} item xs={12}>
         <img
           src={logo}
           alt="Bulls"
@@ -32,25 +30,31 @@ const Introright = () => {
         ></img>
       </Grid>
 
-     
-      <Grid style= {spacing} item xs={12} md={6}>
+      <Grid style={spacing} item xs={12} md={6}>
         <ToggleButtonGroup
           value={alignment}
           exclusive
           onChange={handleAlignment}
           aria-label="text alignment"
-          
         >
-          <ToggleButton variant="contained" value="left" aria-label="left aligned" >
+          <ToggleButton
+            variant="contained"
+            value="left"
+            aria-label="left aligned"
+          >
             SignUp
           </ToggleButton>
-          <ToggleButton variant="contained" value="center" aria-label="centered">
+          <ToggleButton
+            variant="contained"
+            value="center"
+            aria-label="centered"
+          >
             SignIn
           </ToggleButton>
         </ToggleButtonGroup>
       </Grid>
 
-      <Grid  style={spacing} item xs={12}>
+      <Grid style={spacing} item xs={12}>
         <TextField
           required
           id="filled-required"
@@ -86,23 +90,17 @@ const Introright = () => {
         )}
       </Grid>
 
-      <Grid  style= {spacing} item xs={12}>
-        {/* <Button color="primary" onClick= {(e)=> console.log("Chea")} >
-          {alignment === "left" ? "Sign Up" : "Sign In"}
-         
-          
-        </Button> */}
-         {/* <PopUp/> */}
-         <PopUpBirthday userState= {alignment === "left" ? " Sign Up" : " Sign In"}/>
+      <Grid style={spacing} item xs={12}>
+        <PopUpBirthday
+          userState={alignment === "left" ? " Sign Up" : " Sign In"}
+        />
       </Grid>
 
-<Grid item  className= "Sign" xs={12}>
-<hr style={{width:"50%"}}></hr>
+      <Grid item className="Sign" xs={12}>
+        <hr style={{ width: "50%" }}></hr>
+      </Grid>
 
-</Grid>
-    
-
-      <Grid t={100} className= "Sign" item xs={12} md={12}>
+      <Grid t={100} className="Sign" item xs={12} md={12}>
         <Button variant="contained" color="primary">
           <FacebookIcon /> {alignment === "left" ? " Sign Up" : " Sign In"} With
           Facebook

@@ -14,9 +14,10 @@ import Typography from "@material-ui/core/Typography";
 
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import NumberPicker from "./Numpicker";
+
 import BirthdayPicker from "./BirthdayPicker";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 
 export class PopupBirthday extends Component {
   handleClick = () => {
@@ -54,12 +55,10 @@ export class PopupBirthday extends Component {
 
   makeYears = () => {
     const Year = new Date().getFullYear();
-
-    const lo = [...Array(105).keys()].map((num) => {
+    const years = [...Array(105).keys()].map((num) => {
       return <option value={Year - num}>{Year - num}</option>;
     });
-
-    return lo;
+    return years;
   };
   days = this.makeDays(31);
   years = this.makeYears();
@@ -82,12 +81,14 @@ export class PopupBirthday extends Component {
     e.persist();
 
     if (e.target.name === "Month") {
-      const updateDays = this.calculateDays(e.target.value,false);
+      const updateDays = this.calculateDays(e.target.value, false);
+      const updateYears = this.calculateYears("Dummy")
       this.setState((state) => {
         return {
           ...state,
           selectedMonth: e.target.value,
           days: updateDays,
+          years:updateYears  //Can change into function
         };
       });
     } else if (e.target.name === "Day") {
@@ -100,26 +101,26 @@ export class PopupBirthday extends Component {
         };
       });
     } else if (e.target.name === "Year") {
-        let updateDays
-        this.state.selectedMonth === "2" && ( updateDays= this.calculateDays(2,e.target.value)  )
+      let updateDays;
+      this.state.selectedMonth === "2" ?
+        (updateDays = this.calculateDays(2, e.target.value)) : (updateDays=this.state.days)
       this.setState((state) => {
         return {
           ...state,
           selectedYear: e.target.value,
-          days:updateDays
+          days: updateDays,
         };
       });
     }
   };
 
-  calculateDays(n,year) {
+  calculateDays(n, year) {
     let limit;
     this.state.selectedYear > 0
       ? (limit = new Date(this.state.selectedYear, n, 0).getDate())
       : (limit = new Date(2020, n, 0).getDate());
 
-      year > 0 ?  (limit = new Date(year,n,0).getDate()) : console.log("No")
-     
+    year > 0 ? (limit = new Date(year, n, 0).getDate()) : console.log("No");
 
     if (this.state.selectedDay > 0 && this.state.selectedDay > limit) {
       this.setState({ selectDate: "" });
@@ -165,42 +166,47 @@ export class PopupBirthday extends Component {
 
           <DialogContent>
             <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
+           Please 
             </DialogContentText>
-
-            <Box
-              display="flex"
-              flexDirection="row"
-              justifySelf="center"
-              p={1}
-              m={1}
-            >
-              <Box p={1}>
-                <BirthdayPicker
+     
+     <Grid container justify = "center">
+    
+    <Grid item >
+    <BirthdayPicker
                   title={"Month"}
                   val={this.state.selectedMonth}
                   choices={this.state.months}
                   changeSelected={this.selectDate}
                 />
-              </Box>
-              <Box p={1}>
-                <BirthdayPicker
+
+    </Grid>
+    
+    <Grid item  >
+    <BirthdayPicker
                   title={"Day"}
                   choices={this.state.days}
                   val={this.state.selectedDay}
                   changeSelected={this.selectDate}
                 />
-              </Box>
-              <Box p={1}>
-                <BirthdayPicker
+    </Grid>
+              
+              <Grid item >
+              <BirthdayPicker
                   title={"Year"}
                   choices={this.state.years}
                   val={this.state.selectedYear}
                   changeSelected={this.selectDate}
                 />
-              </Box>
-            </Box>
+              </Grid>
+              
+            
+             
+             
+               
+     </Grid>
+          
+                
+           
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClick} color="primary">
